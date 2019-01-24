@@ -1,0 +1,6 @@
+Lab1/out/
+Lab2/out/
+.*
+*.iml
+!.gitignore
+

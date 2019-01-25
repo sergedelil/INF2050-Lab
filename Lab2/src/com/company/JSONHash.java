@@ -65,13 +65,13 @@ public class JSONHash {
 
     public void getListAlbumFrom2003(){
 
-        JSONObject msgObj = new JSONObject();
+        //JSONObject msgObj = new JSONObject();
         ArrayList<JSONObject> liste = new ArrayList<>();
 
         JSONArray collection = (JSONArray) JSONSerializer.toJSON(obj.getString("collection"));
         for(int i = 0 ; i < collection.size(); i++){
             if (collection.getJSONObject(i).getInt("publication") >= 2003){
-                accumulateJSON(msgObj, liste, collection, i);
+                accumulateJSON(liste, collection.getJSONObject(i));
             }
         }
         liste.forEach((elem) -> {
@@ -80,19 +80,25 @@ public class JSONHash {
 
     }
 
-    private void accumulateJSON(JSONObject msgObj, ArrayList<JSONObject> liste, JSONArray collection, int i) {
-        msgObj.put("type", collection.getJSONObject(i).getString("type"));
-        msgObj.put("artist", collection.getJSONObject(i).getString("artist"));
-        msgObj.put("title", collection.getJSONObject(i).getString("title"));
-        msgObj.put("publication", collection.getJSONObject(i).getInt("publication"));
-        msgObj.put("rating", collection.getJSONObject(i).getInt("rating"));
+    private void accumulateJSON(ArrayList<JSONObject> liste, JSONObject myObj) {
+
+        JSONObject msgObj = new JSONObject();
+        msgObj.put("type", myObj.getString("type"));
+        msgObj.put("artist", myObj.getString("artist"));
+        msgObj.put("title", myObj.getString("title"));
+        msgObj.put("publication", myObj.getInt("publication"));
+        msgObj.put("rating", myObj.getInt("rating"));
 
         liste.add(msgObj);
     }
 
     public void getListAlbumPreferes() throws LabINF2050Exception {
 
-        JSONObject msgObj = new JSONObject();
+        ArrayList<String> listePrefere = new ArrayList<>();
+        listePrefere.add("Century Child");
+        listePrefere.add("The System has Failed");
+        listePrefere.add("Land of the Free");
+        //JSONObject msgObj = new JSONObject();
         ArrayList<JSONObject> liste = new ArrayList<>();
 
         JSONArray collection = (JSONArray) JSONSerializer.toJSON(obj.getString("collection"));
@@ -102,7 +108,7 @@ public class JSONHash {
                     || collection.getJSONObject(i).getString("title").equals("The System has Failed")
                     || collection.getJSONObject(i).getString("title").equals("Land of the Free")){
 
-                accumulateJSON(msgObj, liste, collection, i);
+                accumulateJSON(liste, collection.getJSONObject(i));
             }
         }
         JSONObject jsonObj = new JSONObject();
@@ -119,7 +125,7 @@ public class JSONHash {
         JSONArray collection = (JSONArray) JSONSerializer.toJSON(obj.getString("collection"));
         for(int i = 0 ; i < collection.size(); i++){
             if (collection.getJSONObject(i).getInt("rating") == 5){
-                accumulateJSON(msgObj, liste, collection, i);
+                accumulateJSON(liste, collection.getJSONObject(i));
             }
         }
         liste.forEach((elem) -> {

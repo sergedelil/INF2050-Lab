@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, LabINF2050Exception {
 
-        if (args.length != 3){
+        if (args.length != 1){
             System.out.println("nombre d'arguments invalide...");
             exit();
         }

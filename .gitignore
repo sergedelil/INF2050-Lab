@@ -2,5 +2,8 @@ Lab1/out/
 Lab2/out/
 .*
 *.iml
+HelloMaven/target/
+HelloMaven/*.iml
+HelloMaven/src/test/
 !.gitignore
 
